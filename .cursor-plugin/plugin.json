@@ -1,0 +1,22 @@
+{
+  "name": "nero-network-office-page",
+  "displayName": "Nero Network Office Page",
+  "description": "Reusable Cursor office for preparing and publishing WordPress longread pages: research, SEO, copy, design, FTP/SSH publication, QA and SEO audit. Configure all private site data through env files or Cursor Secrets.",
+  "version": "0.1.0",
+  "keywords": [
+    "wordpress",
+    "seo",
+    "wordstat",
+    "cursor",
+    "automation",
+    "publishing",
+    "qa"
+  ],
+  "author": {
+    "name": "Nero Network"
+  },
+  "rules": "./rules/",
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "commands": "./commands/"
+}

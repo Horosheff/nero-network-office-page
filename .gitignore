@@ -1,0 +1,35 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+**/*.local
+**/hosting-credentials.local
+*.credentials.local
+*.local.ps1
+*.local.sh
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+
+# Runtime artifacts
+output/
+.cursor/nero-network-handoff.md
+.cursor/nero-network-fragments/
+page-*.php
+!wordpress/
+!wordpress/page-*.php
+temp_page.html
+downloaded.html
+
+# Dependencies and generated audit output
+node_modules/
+skills/indexlift-seo-auditor/node_modules/
+skills/indexlift-seo-auditor/deliverables/
+skills/indexlift-seo-auditor/package-lock.json
+
+# Python / OS noise
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

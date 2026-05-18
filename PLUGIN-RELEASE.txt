@@ -1,0 +1,24 @@
+Nero Network Office Page — установка из архива
+====================================
+
+Версия: см. .cursor-plugin/plugin.json
+
+Cloud/worker: см. CLOUD-AUTOMATION.md
+
+1. Распакуйте папку nero-network-office-page в:
+   %USERPROFILE%\.cursor\plugins\local\nero-network-office-page
+   (при обновлении — замените папку целиком или смержите с бэкапом).
+
+2. Для SEO-аудита Лёни (IndexLift) один раз установите зависимости:
+   cd "%USERPROFILE%\.cursor\plugins\local\nero-network-office-page\skills\indexlift-seo-auditor"
+   npm install
+
+3. Файл shared/hosting-credentials.local в архив не входит (секреты).
+   См. shared/HOSTING-CREDENTIALS-README.md
+
+4. Для запуска 3 раза в день используйте Cursor Automations + worker pool.
+   Канонические журналы:
+   - <PROJECT_ROOT>/shared/kirill-news-ledger.md
+   - <PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md
+
+5. Перезапустите Cursor или перезагрузите окно, чтобы подхватились правила и агенты.
