@@ -4,7 +4,7 @@
 
 ## 1. Проверка состава
 
-- [ ] Есть `.cursor-plugin/plugin.json` с версией `0.1.0`.
+- [ ] Есть `.cursor-plugin/plugin.json` с версией `0.2.0`.
 - [ ] Есть все агенты: `director`, `kirill`, `seo-kolya`, `artyom`, `zhenya`, `artur`, `alina`, `boris`, `natasha`, `yura`, `qa`, `lenya`.
 - [ ] Есть все skills, включая `director-nero-network` и `indexlift-seo-auditor`.
 - [ ] Есть `README.md`, `INSTALL.md`, `SETUP.md`, `CLOUD-AUTOMATION.md`.

@@ -131,7 +131,7 @@ def check_url(config: dict[str, str]) -> CheckResult:
         return CheckResult("site url", False, "WP_SITE_URL or PUBLIC_SITE_URL is empty")
 
     try:
-        request = urllib.request.Request(url, headers={"User-Agent": "nero-network-office-check/0.1"})
+        request = urllib.request.Request(url, headers={"User-Agent": "nero-network-office-check/0.2"})
         with urllib.request.urlopen(request, timeout=12) as response:
             status = response.getcode()
     except (urllib.error.URLError, TimeoutError, ValueError) as exc:

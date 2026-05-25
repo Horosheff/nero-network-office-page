@@ -10,7 +10,7 @@ get_header();
 <main id="primary" class="site-main nero-office-example-page">
   <section class="nero-office-hero" aria-labelledby="nero-office-title">
     <div class="nero-office-wrap">
-      <p class="nero-office-eyebrow">Nero Network Office Page 0.1</p>
+      <p class="nero-office-eyebrow">Nero Network Office Page 0.2</p>
       <h1 id="nero-office-title">WordPress-страница готова к настройке</h1>
       <p class="nero-office-lead">
         Этот шаблон проверяет, что плагин может подготовить отдельную страницу,

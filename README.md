@@ -1,4 +1,4 @@
-# Nero Network Office Page 0.1
+# Nero Network Office Page 0.2
 
 **Nero Network Office Page** — переносимый Cursor-плагин для команды AI-агентов, которые готовят и публикуют SEO-страницы на WordPress: от темы и семантики до лонгрида, hero-анимации, визуального блока, FTP/SSH-публикации, QA и SEO-аудита.
 
