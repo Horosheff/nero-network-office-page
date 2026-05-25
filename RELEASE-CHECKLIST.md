@@ -9,7 +9,7 @@
 - [ ] Есть все skills, включая `director-nero-network` и `indexlift-seo-auditor`.
 - [ ] Есть `README.md`, `INSTALL.md`, `SETUP.md`, `CLOUD-AUTOMATION.md`.
 - [ ] Есть `.env.example`, `shared/hosting-credentials.env.example`, `shared/hosting-credentials.local.example`.
-- [ ] Есть `scripts/check-config.py`.
+- [ ] Есть `scripts/first-run.py` и `scripts/check-config.py`.
 - [ ] Есть тестовый WordPress-шаблон `wordpress/page-nero-network-office-example.php`.
 
 ## 2. Секреты и личные данные
@@ -40,7 +40,8 @@ rg -i "password|token|secret|api_key|ftp_host|ssh_host|C:\\Users|OLD_DOMAIN|OLD_
 - [ ] Папка подключена в `%USERPROFILE%\.cursor\plugins\local\nero-network-office-page`.
 - [ ] Cursor перезагружен.
 - [ ] Агенты и skills видны в Cursor.
-- [ ] `shared/hosting-credentials.local` создан из `.example` и заполнен только локально.
+- [ ] `python .\scripts\first-run.py` создаёт `.env` и `shared/hosting-credentials.local`.
+- [ ] `shared/hosting-credentials.local` заполнен только локально.
 - [ ] `python .\scripts\check-config.py --local` проходит базовую проверку.
 - [ ] `python .\scripts\check-config.py --local --network` проходит сетевую проверку на машине, где есть доступ к сайту.
 
@@ -67,4 +68,5 @@ rg -i "password|token|secret|api_key|ftp_host|ssh_host|C:\\Users|OLD_DOMAIN|OLD_
 - `INSTALL.md`;
 - список переменных из `.env.example`;
 - предупреждение, что пароли нельзя отправлять в чат;
+- команду первого запуска: `python scripts/first-run.py`;
 - команду проверки: `python scripts/check-config.py --local --network`.

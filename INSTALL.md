@@ -58,6 +58,14 @@ CTA и реклама опциональны:
 
 ## 4. Проверить конфигурацию
 
+Для первого запуска создайте локальные файлы настройки:
+
+```powershell
+python .\scripts\first-run.py
+```
+
+Скрипт создаёт `.env` и `shared/hosting-credentials.local` из `.example`-файлов и не перезаписывает существующие файлы. Для пересоздания используйте `python .\scripts\first-run.py --force`.
+
 Запустите:
 
 ```powershell

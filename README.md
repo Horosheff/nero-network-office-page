@@ -83,6 +83,7 @@ nero-network-office-page/
 │   ├── hosting-credentials.local.example
 │   └── credentials.py
 ├── scripts/
+│   ├── first-run.py
 │   └── check-config.py
 ├── wordpress/
 │   └── page-nero-network-office-example.php
@@ -141,9 +142,11 @@ flowchart LR
 ```powershell
 git clone https://github.com/Horosheff/nero-network-office-page.git
 cd nero-network-office-page
-Copy-Item ".\shared\hosting-credentials.local.example" ".\shared\hosting-credentials.local"
+python .\scripts\first-run.py
 python .\scripts\check-config.py --local
 ```
+
+`first-run.py` создаёт `.env` и `shared/hosting-credentials.local` из `.example`-файлов, не перезаписывая существующие настройки. Для пересоздания используйте `python .\scripts\first-run.py --force`.
 
 Подключить в Cursor:
 
