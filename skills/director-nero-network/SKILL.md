@@ -17,16 +17,16 @@ description: Директор — Кирилл → Коля||Артём → Же
 
 Используй fallback: **отдельный `Task(generalPurpose)` на каждую роль**:
 
-- `kirill`: инструкции из `.cursor/agents/kirill.md` + `.cursor/skills/news-scout-kirill/SKILL.md`;
-- `seo-kolya`: `.cursor/agents/seo-kolya.md` + `.cursor/skills/seo-agent-kolya/SKILL.md`;
-- `artyom`: `.cursor/agents/artyom.md` + `.cursor/skills/researcher-artyom/SKILL.md`;
-- `zhenya`: `.cursor/agents/zhenya.md` + `.cursor/skills/seo-writer-zhenya/SKILL.md`;
-- `artur`: `.cursor/agents/artur.md` + `.cursor/skills/advertiser-artur/SKILL.md`;
-- `alina`: `.cursor/agents/alina.md` + `.cursor/skills/animator-alina/SKILL.md`;
-- `boris`: `.cursor/agents/boris.md` + `.cursor/skills/animator-boris/SKILL.md`;
-- `natasha`: `.cursor/agents/natasha.md` + `.cursor/skills/designer-natasha/SKILL.md`;
-- `yura`: `.cursor/agents/yura.md` + `.cursor/skills/publisher-yura/SKILL.md`;
-- `qa`: `.cursor/agents/qa.md` + `.cursor/skills/qa-checker/SKILL.md`;
+- `kirill`: инструкции из `agents/kirill.md` + `skills/news-scout-kirill/SKILL.md`;
+- `seo-kolya`: `agents/seo-kolya.md` + `skills/seo-agent-kolya/SKILL.md`;
+- `artyom`: `agents/artyom.md` + `skills/researcher-artyom/SKILL.md`;
+- `zhenya`: `agents/zhenya.md` + `skills/seo-writer-zhenya/SKILL.md`;
+- `artur`: `agents/artur.md` + `skills/advertiser-artur/SKILL.md`;
+- `alina`: `agents/alina.md` + `skills/animator-alina/SKILL.md`;
+- `boris`: `agents/boris.md` + `skills/animator-boris/SKILL.md`;
+- `natasha`: `agents/natasha.md` + `skills/designer-natasha/SKILL.md`;
+- `yura`: `agents/yura.md` + `skills/publisher-yura/SKILL.md`;
+- `qa`: `agents/qa.md` + `skills/qa-checker/SKILL.md`;
 - `lenya`: `.cursor/agents/lenya.md` + `.cursor/skills/seo-auditor-lenya/SKILL.md`.
 
 Один `generalPurpose` Task = одна роль. Объединять несколько ролей в один Task запрещено.
@@ -61,7 +61,7 @@ description: Директор — Кирилл → Коля||Артём → Же
    - Task(boris) — «**блок в теле статьи, не hero** — продолжение или контраст к теме; **редакционная композиция** (сплит/сетка/карта, не узкая колонка по центру); свой canvas id и движок; якорь для Наташи (skill Бориса). Запиши результат только в `<PROJECT_ROOT>/.cursor/nero-network-fragments/boris.md`; не пиши в handoff.»
 9. **Снова прочитай** оба фрагмента и проверь маркеры `=== АЛИНА (HERO) ===` и `=== БОРИС (БЛОК СТАТЬИ, НЕ HERO) ===`. Если одного нет — дозапускай только отсутствующего, не переходя к Наташе. После проверки Директор сам дописывает оба фрагмента в handoff в порядке: Алина → Борис.
 10. Task(natasha) — «полная страница: hero Алины → контент → **вставь блок Бориса** по якорю из handoff; сохрани все canvas/script и рекламу Артура; не затемняй hero; у всех `<img>` есть **alt**, у внешних ссылок с `target="_blank"` — **rel="noopener noreferrer"**»
-11. Task(yura) — «FTP/SFTP/SSH → page-{slug}.php, НЕ WP API. Сначала проверить `stylesheet/template` и получить реальный upload-путь через `get_stylesheet_directory()`; если env-пути отличаются, грузить в runtime-путь WordPress. Проверить права файла/каталогов, `_wp_page_template`, `post_excerpt = Description`, кэш и live HTML. После публикации записать `<PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md`, а если тема пришла от Кирилла — обновить `<PROJECT_ROOT>/shared/kirill-news-ledger.md` статусом `published` и URL; обязательно дописать блок `=== ЮРА (ПУБЛИКАЦИЯ) ===` в handoff с URL и runtime-путём темы»
+11. Task(yura) — «SSH/SCP/SFTP/FTP → page-{slug}.php, НЕ WP API. Сначала проверить `stylesheet/template` и получить реальный upload-путь через `get_stylesheet_directory()`; если env-пути отличаются, грузить в runtime-путь WordPress. Проверить права файла/каталогов, `_wp_page_template`, `post_excerpt = Description`, кэш и live HTML. После публикации записать `<PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md`, а если тема пришла от Кирилла — обновить `<PROJECT_ROOT>/shared/kirill-news-ledger.md` статусом `published` и URL; обязательно дописать блок `=== ЮРА (ПУБЛИКАЦИЯ) ===` в handoff с URL и runtime-путём темы»
 12. **До QA** сделай быструю sanity-check проверку живого HTML и handoff: на URL должны быть уникальные маркеры кастомного шаблона (`{slug}-page`, hero-class, `canvas id`), а в `nero-network-handoff.md` должен быть блок `=== ЮРА (ПУБЛИКАЦИЯ) ===`. Если блока Юры нет — не запускай Макса/Лёню, дозапусти Юру только на запись отчёта/журналов. Если HTML похож на дефолтный `page.php` (`<div class="container"><nav class="breadcrumbs">` и пустой `entry-content`) — это ещё **не публикация**, сразу возвращай на Юру с проверкой активной темы / `_wp_page_template` / кэша.
 13. **ПАРАЛЛЕЛЬНО** (два Task в одном сообщении — оба опираются на **уже опубликованный URL**, друг друга не ждут):
    - Task(qa) — «Макс: hero, блок Бориса (если есть), canvas/script, контент, консоль, **проверка alt у img и имён ссылок** (баннер из AD_BANNER_* и др.). Запиши результат только в `<PROJECT_ROOT>/.cursor/nero-network-fragments/qa.md`; не пиши в handoff.»
@@ -100,6 +100,6 @@ description: Директор — Кирилл → Коля||Артём → Же
 
 ## Запреты
 
-- Task(director)
+- НЕ вызывай отдельный Task или команду с именем director — текущий агент уже Директор-оркестратор; director не является отдельной ролью пайплайна
 - фоновый Task
 - копирование лонгрида в чат до финала

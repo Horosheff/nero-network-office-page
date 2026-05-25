@@ -20,8 +20,8 @@ is_background: false
 
 Правило fallback:
 
-- для каждой роли прочитай соответствующий файл `.cursor/agents/<role>.md`;
-- если у роли есть skill, прочитай `.cursor/skills/<skill>/SKILL.md`;
+- для каждой роли прочитай соответствующий файл `agents/<role>.md`;
+- если у роли есть skill, прочитай `skills/<skill>/SKILL.md`;
 - передай эти инструкции внутрь отдельного `generalPurpose` Task;
 - один Task = одна роль и один блок handoff/fragment;
 - параллельные пары запускай отдельными Task в одном сообщении.
@@ -79,7 +79,7 @@ is_background: false
   - `=== БОРИС (БЛОК СТАТЬИ, НЕ HERO) ===`
    Если одного блока нет, дозапусти только отсутствующего агента. Не переходи к Наташе без обоих визуальных блоков.
 10. **Task**(`natasha`) — «Собери полную страницу: hero Алины первым → введение слева+декор → контент → блок Бориса по якорю → FAQ/CTA/рекламный партнёр из env. Не удаляй canvas/script Алины и Бориса. Не затемняй hero без явного ТЗ. Все `<img>` с `alt`, внешние `target="_blank"` с `rel="noopener noreferrer"`. Обязателен `main#primary`, сброс padding под header, скрытие breadcrumbs. Запиши блок `=== НАТАША (HTML СТРАНИЦЫ) ===` и `Передача Юре`».
-11. **Task**(`yura`) — «Опубликуй через FTP/SFTP/SSH как `page-{slug}.php` в фиксированную активную тему `${WP_THEME_SLUG}`. НЕ WordPress API. Сначала проверь `stylesheet/template` и получи реальный upload-путь через `get_stylesheet_directory()`; если `SSH_THEME_PATH`/`REMOTE_WP_THEMES` отличаются, грузить в runtime-путь WordPress, а не в env-подсказку. Проверь права файла `644` и доступность каталогов. Создай/обнови страницу, выставь `_wp_page_template`, `post_excerpt = Description`, сбрось кэш. После публикации проверь live HTML на `main#primary`, `{slug}-page`, hero/canvas-маркеры. Запиши `<PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md`. Если страница была выбрана Кириллом, добавь/обнови запись в `<PROJECT_ROOT>/shared/kirill-news-ledger.md` со статусом `published` и публичным URL. Только потом запиши один блок `=== ЮРА (ПУБЛИКАЦИЯ) ===` с URL и runtime-путём темы».
+11. **Task**(`yura`) — «Опубликуй через SSH/SCP/SFTP/FTP как `page-{slug}.php` в фиксированную активную тему `${WP_THEME_SLUG}`. НЕ WordPress API. Сначала проверь `stylesheet/template` и получи реальный upload-путь через `get_stylesheet_directory()`; если `SSH_THEME_PATH`/`REMOTE_WP_THEMES` отличаются, грузить в runtime-путь WordPress, а не в env-подсказку. Проверь права файла `644` и доступность каталогов. Создай/обнови страницу, выставь `_wp_page_template`, `post_excerpt = Description`, сбрось кэш. После публикации проверь live HTML на `main#primary`, `{slug}-page`, hero/canvas-маркеры. Запиши `<PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md`. Если страница была выбрана Кириллом, добавь/обнови запись в `<PROJECT_ROOT>/shared/kirill-news-ledger.md` со статусом `published` и публичным URL. Только потом запиши один блок `=== ЮРА (ПУБЛИКАЦИЯ) ===` с URL и runtime-путём темы».
 12. **Быстрый sanity-check Директора до QA:** прочитай live HTML и handoff. Если нет блока `=== ЮРА (ПУБЛИКАЦИЯ) ===`, нет маркеров кастомного шаблона (`{slug}-page`, hero class, canvas id) или виден дефолтный `page.php` (`breadcrumbs`, типовой `entry-content`), верни задачу Юре. Не запускай Макса и Лёню по ложной публикации.
 13. **Параллельно в одном сообщении**:
   - **Task**(`qa`) — «Макс: браузерная проверка URL: hero, блок Бориса, canvas/script, console, mobile, `main#primary`, breadcrumbs, alt у img, доступные ссылки. Запиши результат только в `<PROJECT_ROOT>/.cursor/nero-network-fragments/qa.md`; не пиши в handoff.»
@@ -116,7 +116,7 @@ is_background: false
 
 ## Запреты
 
-- НЕ Task(`director`) — Директор уже основной агент.
+- НЕ вызывай отдельный Task или команду с именем director — текущий агент уже Директор-оркестратор; director не является отдельной ролью пайплайна.
 - НЕ фоновый Task.
 - НЕ писать лонгрид, research, hero, вёрстку, публикацию или QA самому вместо субагентов.
 - НЕ считать публикацию успешной по одному `HTTP 200`.

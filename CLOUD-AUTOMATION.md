@@ -101,20 +101,24 @@ agent worker start --pool --pool-name nero-network --idle-release-timeout 600
 ```text
 Ты работаешь в репозитории Nero Network Office Page.
 
-Запусти полный пайплайн Nero Network Office Page для новости дня **через проектных субагентов**.
+Запусти полный пайплайн Nero Network Office Page для новости дня **через роли**.
 
-0. Сначала проверь, что доступны project subagents из `.cursor/agents/`: `director`, `kirill`, `seo-kolya`, `artyom`, `zhenya`, `artur`, `alina`, `boris`, `natasha`, `yura`, `qa`, `lenya`.
-   Если Cloud API не принимает эти имена как Task types, используй fallback: **отдельный `generalPurpose` Task на каждую роль** с полным текстом `.cursor/agents/<role>.md` и нужного `.cursor/skills/<skill>/SKILL.md`.
+0. Текущий Cloud Agent уже является Директором-оркестратором. Не вызывай отдельный Task или команду с именем director: директор не является отдельной ролью пайплайна.
+   Директор запускает только ролевых агентов: `kirill`, `seo-kolya`, `artyom`, `zhenya`, `artur`, `alina`, `boris`, `natasha`, `yura`, `qa`, `lenya`.
+   Для каждой роли сначала используй project-agent Task соответствующего имени.
+   Если Cloud API не принимает имя роли как Task type, используй fallback: **отдельный `generalPurpose` Task на эту одну роль**.
+   Для каждого `generalPurpose` Task передай короткий контракт роли: имя роли, входной файл/фрагмент, точный маркер результата, запреты, путь `agents/<role>.md` и путь соответствующего `skills/<skill>/SKILL.md`. Полный текст больших skill не копируй без необходимости.
+   Один Task = одна роль. Не объединяй роли.
    Если недоступен даже `generalPurpose` Task или невозможно запускать отдельные Task, остановись с блокером:
    `❌ БЛОКЕР: Cloud Agent не может запускать отдельные Task/subagents даже через generalPurpose. Не выполняю single-agent pipeline.`
-1. Запусти `/director` или используй project subagent `director`. Если `/director` недоступен, parent-agent может выполнять только функции Директора-оркестратора: запускать отдельные Task и переносить фрагменты. НЕ выполняй роли сам.
+1. Директор-оркестратор может сбрасывать handoff, запускать отдельные Task/subagents по ролям, читать фрагменты, переносить блоки в handoff и проверять маркеры. НЕ выполняй роли сам.
 2. Перед стартом сбрось <PROJECT_ROOT>/.cursor/nero-network-handoff.md одной строкой "# Nero Network — новая сессия".
 3. Очисти фрагменты текущей сессии в <PROJECT_ROOT>/.cursor/nero-network-fragments/.
 4. Запусти Кирилла: он должен сам найти одну лучшую свежую новость по нейросетям/автоматизации, проверить Wordstat, проверить дубли по <PROJECT_ROOT>/shared/kirill-news-ledger.md и <PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md, записать selected в ledger и блок === КИРИЛЛ (НОВОСТЬ ДНЯ) === в handoff.
 5. Если Кирилл не нашёл недублирующуюся тему, остановись и запиши блокер.
 6. Далее выполни цепочку: Коля||Артём → Женя → Артур → Алина||Борис → Наташа → Юра → Макс||Лёня.
 7. Параллельные агенты не пишут напрямую в handoff: они пишут во фрагменты <PROJECT_ROOT>/.cursor/nero-network-fragments/, а Директор переносит блоки в handoff без дублей.
-8. Юра публикует только FTP → page-{slug}.php в ${WP_THEME_SLUG}, НЕ WordPress API.
+8. Юра публикует только SSH/SCP/SFTP/FTP как `page-{slug}.php` в активную тему `${WP_THEME_SLUG}`; в Cloud сначала SSH/SCP/SFTP, НЕ WordPress API / REST API / MCP blob flow.
 9. До QA проверь, что в handoff есть === ЮРА (ПУБЛИКАЦИЯ) === и live HTML содержит main#primary, {slug}-page, hero/canvas-маркеры.
 10. После публикации Юра обновляет <PROJECT_ROOT>/nero-network-office-page/shared/published-pages.md и, если тема пришла от Кирилла, <PROJECT_ROOT>/shared/kirill-news-ledger.md статусом published.
 11. Если Макс или Лёня нашли проблемы, максимум 2 цикла Юра → Макс||Лёня.
@@ -124,7 +128,9 @@ agent worker start --pool --pool-name nero-network --idle-release-timeout 600
 - самому делать hero вместо Алины;
 - самому делать визуальный блок вместо Бориса;
 - самому верстать страницу вместо Наташи;
-- самому вставлять рекламу вместо Артура.
+- самому вставлять рекламу вместо Артура;
+- самому публиковать вместо Юры;
+- самому делать QA/SEO-аудит вместо Макса и Лёни;
 - объединять несколько ролей в один `generalPurpose` Task.
 
 Финальный ответ: URL опубликованной страницы или блокер с причиной.
