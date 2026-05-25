@@ -1,5 +1,9 @@
 # Nero Network Office Page 0.2
 
+[![Офис из агентов в Cursor AI — смотреть подкаст](assets/office-cursor-ai-banner.svg)](https://mave.stream/e/1AnET5OvA23)
+
+[Смотреть подкаст «Офис из агентов в Cursor AI»](https://mave.stream/e/1AnET5OvA23)
+
 **Nero Network Office Page** — переносимый Cursor-плагин для команды AI-агентов, которые готовят и публикуют SEO-страницы на WordPress: от темы и семантики до лонгрида, hero-анимации, визуального блока, FTP/SSH-публикации, QA и SEO-аудита.
 
 Плагин сделан как отдельный репозиторий, безопасный для передачи другим людям: все домены, доступы, тема WordPress, CTA и рекламные ссылки настраиваются через env/secrets и не хранятся в коде.
